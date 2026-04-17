@@ -265,10 +265,10 @@ export function LlamaSpeedLab({ initialConfig }: { initialConfig: ServerConfig }
               <Badge variant="outline">Gemma 4 E2B Q8_0</Badge>
             </div>
             <div className="space-y-3">
-              <CardTitle className="max-w-3xl text-4xl leading-tight md:text-5xl">
+              <CardTitle as="h1" className="max-w-3xl text-4xl leading-tight md:text-5xl">
                 Feel the local iGPU speed in a browser, not a terminal.
               </CardTitle>
-              <CardDescription className="max-w-2xl text-base leading-7">
+              <CardDescription as="p" className="max-w-2xl text-base leading-7">
                 This dashboard is tuned for one thing: showcasing how fast <span className="font-medium text-foreground">llama.cpp + Vulkan</span> can
                 feel on this PC. Start the server, fire a short prompt, and watch first-token latency and generation throughput update live.
               </CardDescription>
@@ -284,8 +284,8 @@ export function LlamaSpeedLab({ initialConfig }: { initialConfig: ServerConfig }
 
         <Card>
           <CardHeader>
-            <CardTitle>Server Pulse</CardTitle>
-            <CardDescription>Start, stop, and verify the local llama-server without leaving the page.</CardDescription>
+            <CardTitle as="h2">Server Pulse</CardTitle>
+            <CardDescription as="p">Start, stop, and verify the local llama-server without leaving the page.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex flex-wrap items-center gap-3">
@@ -295,18 +295,34 @@ export function LlamaSpeedLab({ initialConfig }: { initialConfig: ServerConfig }
               <Badge variant="outline">{serverRunning ? "Tracked process running" : "No tracked process"}</Badge>
             </div>
             <div className="rounded-[24px] border border-border/70 bg-background/70 p-4">
-              <p className="font-mono text-sm leading-6 text-muted-foreground">{statusText}</p>
+              <p data-testid="status-text" className="font-mono text-sm leading-6 text-muted-foreground">
+                {statusText}
+              </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Button onClick={() => startTransition(() => void startServer())} disabled={isPending || isStreaming}>
+              <Button
+                data-testid="start-server-button"
+                onClick={() => startTransition(() => void startServer())}
+                disabled={isPending || isStreaming}
+              >
                 {isPending ? <Loader2 className="size-4 animate-spin" /> : <Play className="size-4" />}
                 Start Server
               </Button>
-              <Button variant="outline" onClick={() => startTransition(() => void stopServer())} disabled={isPending || isStreaming}>
+              <Button
+                data-testid="stop-server-button"
+                variant="outline"
+                onClick={() => startTransition(() => void stopServer())}
+                disabled={isPending || isStreaming}
+              >
                 <Square className="size-4" />
                 Stop
               </Button>
-              <Button variant="outline" onClick={() => startTransition(() => void refreshStatus())} disabled={isPending || isStreaming}>
+              <Button
+                data-testid="refresh-server-button"
+                variant="outline"
+                onClick={() => startTransition(() => void refreshStatus())}
+                disabled={isPending || isStreaming}
+              >
                 <TimerReset className="size-4" />
                 Refresh
               </Button>
@@ -321,8 +337,8 @@ export function LlamaSpeedLab({ initialConfig }: { initialConfig: ServerConfig }
       <section className="grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
         <Card>
           <CardHeader>
-            <CardTitle>Local Runtime Config</CardTitle>
-            <CardDescription>The defaults point at this machine&apos;s current `llama.cpp` build and Gemma 4 model. Edit them if your paths differ.</CardDescription>
+            <CardTitle as="h2">Local Runtime Config</CardTitle>
+            <CardDescription as="p">The defaults point at this machine&apos;s current `llama.cpp` build and Gemma 4 model. Edit them if your paths differ.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
             <Field label="llama-server.exe">
@@ -366,8 +382,8 @@ export function LlamaSpeedLab({ initialConfig }: { initialConfig: ServerConfig }
 
         <Card className="overflow-hidden">
           <CardHeader>
-            <CardTitle>Speed Chat</CardTitle>
-            <CardDescription>Short prompts make the speed pop. The final SSE packet supplies the exact prompt and generation throughput.</CardDescription>
+            <CardTitle as="h2">Speed Chat</CardTitle>
+            <CardDescription as="p">Short prompts make the speed pop. The final SSE packet supplies the exact prompt and generation throughput.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
             <div className="flex flex-wrap gap-2">
@@ -382,16 +398,27 @@ export function LlamaSpeedLab({ initialConfig }: { initialConfig: ServerConfig }
                 </button>
               ))}
             </div>
-            <Textarea value={draft} onChange={(event) => setDraft(event.target.value)} placeholder="Ask something short to feel the stream speed..." className="min-h-32" />
+            <Textarea
+              data-testid="prompt-input"
+              value={draft}
+              onChange={(event) => setDraft(event.target.value)}
+              placeholder="Ask something short to feel the stream speed..."
+              className="min-h-32"
+            />
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="font-mono text-xs text-muted-foreground">{metrics.detail}</div>
-              <Button onClick={sendPrompt} disabled={isStreaming || !serverReachable} size="lg">
+              <div data-testid="metrics-detail" className="font-mono text-xs text-muted-foreground">
+                {metrics.detail}
+              </div>
+              <Button data-testid="send-prompt-button" onClick={sendPrompt} disabled={isStreaming || !serverReachable} size="lg">
                 {isStreaming ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />}
                 {isStreaming ? "Streaming..." : "Send Prompt"}
               </Button>
             </div>
             <Separator />
-            <div className="max-h-[560px] space-y-4 overflow-y-auto rounded-[24px] border border-border/70 bg-background/60 p-4">
+            <div
+              data-testid="chat-stream"
+              className="max-h-[560px] space-y-4 overflow-y-auto rounded-[24px] border border-border/70 bg-background/60 p-4"
+            >
               {messages.length === 0 ? (
                 <EmptyState />
               ) : (
@@ -433,14 +460,26 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-function MetricCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function MetricCard({
+  icon,
+  label,
+  value,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+}) {
+  const testId = `metric-${label.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}`;
+
   return (
     <div className="rounded-[24px] border border-border/70 bg-background/70 p-5">
       <div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-muted-foreground">
         {icon}
         {label}
       </div>
-      <div className="font-mono text-3xl font-semibold text-foreground">{value}</div>
+      <div data-testid={testId} className="font-mono text-3xl font-semibold text-foreground">
+        {value}
+      </div>
     </div>
   );
 }

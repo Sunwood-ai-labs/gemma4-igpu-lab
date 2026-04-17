@@ -70,3 +70,26 @@ The dashboard highlights the speed feel directly in the browser:
 - `Prompt tok/s`
 - `Gen tok/s`
 - `Total`
+
+## E2E Test
+
+The repository includes a real browser E2E smoke test with Playwright. It opens the dashboard, starts `llama-server`, sends a short prompt, and verifies that timing metrics are shown.
+
+### 1. Install the Playwright browser
+
+```powershell
+cd C:\Prj\gemma4-igpu-lab
+npx playwright install chromium
+```
+
+### 2. Run the E2E suite
+
+```powershell
+npm run test:e2e
+```
+
+Notes:
+
+- The E2E test is intentionally real, not mocked. It uses the local `llama.cpp + Vulkan` setup from this machine.
+- It can take a few minutes because the test waits for `llama-server` startup and a full streamed response.
+- HTML reports are written to `playwright-report/` when the suite finishes.
