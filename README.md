@@ -2,6 +2,12 @@
 
 Gemma 4 E2B on Intel iGPU setup notes, benchmarks, and a modern local web app for comparing `llama.cpp + Vulkan` and `Ollama`.
 
+## Screenshot
+
+The app can switch between both local runtimes, send the same prompt, and keep the latest timing snapshot side by side for quick comparison.
+
+![Runtime comparison screenshot](docs/screenshots/runtime-comparison.png)
+
 ## Contents
 
 - `app/`

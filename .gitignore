@@ -26,6 +26,8 @@ Thumbs.db
 
 # Local web app runtime logs
 logs/next-dev*.log
+logs/web-dev*.log
+logs/web-prod*.log
 logs/llama-server-web*.log
 logs/ollama-serve-web*.log
 
