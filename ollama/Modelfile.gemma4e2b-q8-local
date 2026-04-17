@@ -1,0 +1,5 @@
+FROM C:\Prj\Work\models\gemma4-e2b\gemma-4-E2B-it-Q8_0.gguf
+TEMPLATE {{ .Prompt }}
+RENDERER gemma4
+PARSER gemma4
+PARAMETER temperature 0

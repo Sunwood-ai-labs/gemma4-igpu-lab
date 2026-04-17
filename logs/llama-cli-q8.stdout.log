@@ -1,0 +1,36 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b1-9db77a0
+model      : gemma-4-E2B-it-Q8_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> Write one short sentence about RAM.
+
+[Start thinking]
+Thinking Process:
+
+1.  **Analyze the Request:** The user wants "one short sentence about RAM."
+2.  **Define RAM (Random Access Memory):** What is its primary function? It's temporary, fast storage for data the CPU is actively using.
+3.  **
+
+[ Prompt: 30.0 t/s | Generation: 8.8 t/s ]
+
+Exiting...

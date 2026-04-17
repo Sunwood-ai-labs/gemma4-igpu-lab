@@ -1,0 +1,401 @@
+time=2026-04-17T02:15:51.421+09:00 level=INFO source=routes.go:1752 msg="server config" env="map[CUDA_VISIBLE_DEVICES: GGML_VK_VISIBLE_DEVICES:0 GPU_DEVICE_ORDINAL: HIP_VISIBLE_DEVICES: HSA_OVERRIDE_GFX_VERSION: HTTPS_PROXY: HTTP_PROXY: NO_PROXY: OLLAMA_CONTEXT_LENGTH:0 OLLAMA_DEBUG:INFO OLLAMA_DEBUG_LOG_REQUESTS:false OLLAMA_EDITOR: OLLAMA_FLASH_ATTENTION:false OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://127.0.0.1:11435 OLLAMA_KEEP_ALIVE:5m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:0 OLLAMA_MAX_QUEUE:512 OLLAMA_MODELS:C:\\Users\\makim\\.ollama\\models OLLAMA_MULTIUSER_CACHE:false OLLAMA_NEW_ENGINE:false OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NO_CLOUD:false OLLAMA_NUM_PARALLEL:1 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_REMOTES:[ollama.com] OLLAMA_SCHED_SPREAD:false OLLAMA_VULKAN:true ROCR_VISIBLE_DEVICES:]"
+time=2026-04-17T02:15:51.502+09:00 level=INFO source=routes.go:1754 msg="Ollama cloud disabled: false"
+time=2026-04-17T02:15:51.502+09:00 level=INFO source=images.go:499 msg="total blobs: 0"
+time=2026-04-17T02:15:51.503+09:00 level=INFO source=images.go:506 msg="total unused blobs removed: 0"
+time=2026-04-17T02:15:51.504+09:00 level=INFO source=routes.go:1810 msg="Listening on 127.0.0.1:11435 (version 0.20.7)"
+time=2026-04-17T02:15:51.505+09:00 level=INFO source=runner.go:67 msg="discovering available GPUs..."
+time=2026-04-17T02:15:51.509+09:00 level=WARN source=runner.go:485 msg="user overrode visible devices" GGML_VK_VISIBLE_DEVICES=0
+time=2026-04-17T02:15:51.509+09:00 level=WARN source=runner.go:489 msg="if GPUs are not correctly discovered, unset and try again"
+time=2026-04-17T02:15:51.519+09:00 level=INFO source=server.go:444 msg="starting runner" cmd="C:\\Users\\makim\\AppData\\Local\\Programs\\Ollama\\ollama.exe runner --ollama-engine --port 52025"
+time=2026-04-17T02:15:58.457+09:00 level=INFO source=server.go:444 msg="starting runner" cmd="C:\\Users\\makim\\AppData\\Local\\Programs\\Ollama\\ollama.exe runner --ollama-engine --port 57055"
+time=2026-04-17T02:15:59.079+09:00 level=INFO source=server.go:444 msg="starting runner" cmd="C:\\Users\\makim\\AppData\\Local\\Programs\\Ollama\\ollama.exe runner --ollama-engine --port 57072"
+time=2026-04-17T02:15:59.333+09:00 level=INFO source=server.go:444 msg="starting runner" cmd="C:\\Users\\makim\\AppData\\Local\\Programs\\Ollama\\ollama.exe runner --ollama-engine --port 60905"
+time=2026-04-17T02:15:59.626+09:00 level=INFO source=types.go:42 msg="inference compute" id=8680a8a7-0400-0000-0002-000000000000 filter_id="" library=Vulkan compute=0.0 name=Vulkan0 description="Intel(R) UHD Graphics" libdirs=ollama,vulkan driver=0.0 pci_id="" type=iGPU total="32.0 GiB" available="29.9 GiB"
+time=2026-04-17T02:15:59.635+09:00 level=INFO source=routes.go:1860 msg="vram-based default context" total_vram="32.0 GiB" default_num_ctx=32768
+time=2026-04-17T02:16:22.600+09:00 level=INFO source=download.go:179 msg="downloading 4e30e2665218 in 16 447 MB part(s)"
+time=2026-04-17T02:20:42.238+09:00 level=INFO source=download.go:179 msg="downloading 7339fa418c9a in 1 11 KB part(s)"
+time=2026-04-17T02:20:43.734+09:00 level=INFO source=download.go:179 msg="downloading 56380ca2ab89 in 1 42 B part(s)"
+time=2026-04-17T02:20:45.219+09:00 level=INFO source=download.go:179 msg="downloading c6bc3775a3fa in 1 473 B part(s)"
+time=2026-04-17T03:17:39.794+09:00 level=INFO source=server.go:444 msg="starting runner" cmd="C:\\Users\\makim\\AppData\\Local\\Programs\\Ollama\\ollama.exe runner --ollama-engine --port 54351"
+time=2026-04-17T03:17:40.496+09:00 level=INFO source=cpu_windows.go:148 msg=packages count=1
+time=2026-04-17T03:17:40.505+09:00 level=INFO source=cpu_windows.go:164 msg="efficiency cores detected" maxEfficiencyClass=1
+time=2026-04-17T03:17:40.506+09:00 level=INFO source=cpu_windows.go:195 msg="" package=0 cores=10 efficiency=4 threads=16
+time=2026-04-17T03:17:41.425+09:00 level=INFO source=model.go:97 msg="gemma4: token IDs" image=255999 image_end=258882 audio=256000 audio_end=258883
+time=2026-04-17T03:17:41.428+09:00 level=INFO source=server.go:259 msg="enabling flash attention"
+time=2026-04-17T03:17:41.430+09:00 level=INFO source=server.go:444 msg="starting runner" cmd="C:\\Users\\makim\\AppData\\Local\\Programs\\Ollama\\ollama.exe runner --ollama-engine --model C:\\Users\\makim\\.ollama\\models\\blobs\\sha256-e049411c01fb7a81161768c52e38828970e55a64e22738957adcbe51d20f1c8e --port 54365"
+time=2026-04-17T03:17:41.438+09:00 level=INFO source=sched.go:484 msg="system memory" total="63.7 GiB" free="38.6 GiB" free_swap="39.0 GiB"
+time=2026-04-17T03:17:41.438+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=8680a8a7-0400-0000-0002-000000000000 library=Vulkan available="30.1 GiB" free="30.5 GiB" minimum="457.0 MiB" overhead="0 B"
+time=2026-04-17T03:17:41.440+09:00 level=INFO source=server.go:771 msg="loading model" "model layers"=36 requested=-1
+time=2026-04-17T03:17:41.527+09:00 level=INFO source=runner.go:1417 msg="starting ollama engine"
+time=2026-04-17T03:17:41.550+09:00 level=INFO source=runner.go:1452 msg="Server listening on 127.0.0.1:54365"
+time=2026-04-17T03:17:41.554+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:fit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:36[ID:8680a8a7-0400-0000-0002-000000000000 Layers:36(0..35)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+time=2026-04-17T03:17:41.629+09:00 level=INFO source=ggml.go:136 msg="" architecture=gemma4 file_type=Q8_0 name="" description="" num_tensors=601 num_key_values=45
+load_backend: loaded CPU backend from C:\Users\makim\AppData\Local\Programs\Ollama\lib\ollama\ggml-cpu-alderlake.dll
+ggml_vulkan: Found 1 Vulkan devices:
+ggml_vulkan: 0 = Intel(R) UHD Graphics (Intel Corporation) | uma: 1 | fp16: 1 | bf16: 0 | warp size: 32 | shared memory: 32768 | int dot: 1 | matrix cores: none
+load_backend: loaded Vulkan backend from C:\Users\makim\AppData\Local\Programs\Ollama\lib\ollama\vulkan\ggml-vulkan.dll
+time=2026-04-17T03:17:41.730+09:00 level=INFO source=ggml.go:104 msg=system CPU.0.SSE3=1 CPU.0.SSSE3=1 CPU.0.AVX=1 CPU.0.AVX_VNNI=1 CPU.0.AVX2=1 CPU.0.F16C=1 CPU.0.FMA=1 CPU.0.BMI2=1 CPU.0.LLAMAFILE=1 CPU.1.LLAMAFILE=1 compiler=cgo(clang)
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 1573163008.00 bytes (1.47 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 32763863040 total: 34337026048
+time=2026-04-17T03:17:41.999+09:00 level=INFO source=model.go:97 msg="gemma4: token IDs" image=255999 image_end=258882 audio=256000 audio_end=258883
+time=2026-04-17T03:17:42.078+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:alloc LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:36[ID:8680a8a7-0400-0000-0002-000000000000 Layers:36(0..35)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 1573163008.00 bytes (1.47 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 32763863040 total: 34337026048
+time=2026-04-17T03:17:43.226+09:00 level=INFO source=model.go:97 msg="gemma4: token IDs" image=255999 image_end=258882 audio=256000 audio_end=258883
+time=2026-04-17T03:17:46.184+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:commit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:36[ID:8680a8a7-0400-0000-0002-000000000000 Layers:36(0..35)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+time=2026-04-17T03:17:46.184+09:00 level=INFO source=ggml.go:482 msg="offloading 35 repeating layers to GPU"
+time=2026-04-17T03:17:46.185+09:00 level=INFO source=ggml.go:489 msg="offloading output layer to GPU"
+time=2026-04-17T03:17:46.185+09:00 level=INFO source=ggml.go:494 msg="offloaded 36/36 layers to GPU"
+time=2026-04-17T03:17:46.186+09:00 level=INFO source=device.go:240 msg="model weights" device=Vulkan0 size="4.6 GiB"
+time=2026-04-17T03:17:46.202+09:00 level=INFO source=device.go:245 msg="model weights" device=CPU size="408.0 MiB"
+time=2026-04-17T03:17:46.202+09:00 level=INFO source=device.go:251 msg="kv cache" device=Vulkan0 size="246.0 MiB"
+time=2026-04-17T03:17:46.203+09:00 level=INFO source=device.go:262 msg="compute graph" device=Vulkan0 size="165.0 MiB"
+time=2026-04-17T03:17:46.203+09:00 level=INFO source=device.go:267 msg="compute graph" device=CPU size="3.0 MiB"
+time=2026-04-17T03:17:46.204+09:00 level=INFO source=device.go:272 msg="total memory" size="5.4 GiB"
+time=2026-04-17T03:17:46.205+09:00 level=INFO source=sched.go:561 msg="loaded runners" count=1
+time=2026-04-17T03:17:46.206+09:00 level=INFO source=server.go:1364 msg="waiting for llama runner to start responding"
+time=2026-04-17T03:17:46.207+09:00 level=INFO source=server.go:1398 msg="waiting for server to become available" status="llm server loading model"
+time=2026-04-17T03:18:10.472+09:00 level=INFO source=server.go:1402 msg="llama runner started in 29.03 seconds"
+time=2026-04-17T03:18:10.998+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:18:51.731+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:18:54.823+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:18:59.239+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:21:50.435+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:21:59.755+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:22:03.008+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:22:05.738+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 10936950784.00 bytes (10.19 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 23400075264 total: 34337026048
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 10936950784.00 bytes (10.19 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 23400075264 total: 34337026048
+time=2026-04-17T03:22:26.750+09:00 level=INFO source=cpu_windows.go:148 msg=packages count=1
+time=2026-04-17T03:22:26.754+09:00 level=INFO source=cpu_windows.go:164 msg="efficiency cores detected" maxEfficiencyClass=1
+time=2026-04-17T03:22:26.754+09:00 level=INFO source=cpu_windows.go:195 msg="" package=0 cores=10 efficiency=4 threads=16
+time=2026-04-17T03:22:26.756+09:00 level=INFO source=sched.go:627 msg="updated VRAM based on existing loaded models" gpu=8680a8a7-0400-0000-0002-000000000000 library=Vulkan total="32.0 GiB" available="21.8 GiB"
+time=2026-04-17T03:22:27.573+09:00 level=INFO source=model.go:97 msg="gemma4: token IDs" image=255999 image_end=258882 audio=256000 audio_end=258883
+time=2026-04-17T03:22:27.582+09:00 level=INFO source=server.go:259 msg="enabling flash attention"
+time=2026-04-17T03:22:27.593+09:00 level=INFO source=server.go:444 msg="starting runner" cmd="C:\\Users\\makim\\AppData\\Local\\Programs\\Ollama\\ollama.exe runner --ollama-engine --model C:\\Users\\makim\\.ollama\\models\\blobs\\sha256-4e30e2665218745ef463f722c0bf86be0cab6ee676320f1cfadf91e989107448 --port 62120"
+time=2026-04-17T03:22:27.606+09:00 level=INFO source=sched.go:484 msg="system memory" total="63.7 GiB" free="26.9 GiB" free_swap="28.7 GiB"
+time=2026-04-17T03:22:27.609+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=8680a8a7-0400-0000-0002-000000000000 library=Vulkan available="21.3 GiB" free="21.8 GiB" minimum="457.0 MiB" overhead="0 B"
+time=2026-04-17T03:22:27.610+09:00 level=INFO source=server.go:771 msg="loading model" "model layers"=36 requested=-1
+time=2026-04-17T03:22:27.680+09:00 level=INFO source=runner.go:1417 msg="starting ollama engine"
+time=2026-04-17T03:22:27.701+09:00 level=INFO source=runner.go:1452 msg="Server listening on 127.0.0.1:62120"
+time=2026-04-17T03:22:27.702+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:fit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:36[ID:8680a8a7-0400-0000-0002-000000000000 Layers:36(0..35)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+time=2026-04-17T03:22:27.778+09:00 level=INFO source=ggml.go:136 msg="" architecture=gemma4 file_type=Q4_K_M name="" description="" num_tensors=2012 num_key_values=55
+load_backend: loaded CPU backend from C:\Users\makim\AppData\Local\Programs\Ollama\lib\ollama\ggml-cpu-alderlake.dll
+ggml_vulkan: Found 1 Vulkan devices:
+ggml_vulkan: 0 = Intel(R) UHD Graphics (Intel Corporation) | uma: 1 | fp16: 1 | bf16: 0 | warp size: 32 | shared memory: 32768 | int dot: 1 | matrix cores: none
+load_backend: loaded Vulkan backend from C:\Users\makim\AppData\Local\Programs\Ollama\lib\ollama\vulkan\ggml-vulkan.dll
+time=2026-04-17T03:22:27.953+09:00 level=INFO source=ggml.go:104 msg=system CPU.0.SSE3=1 CPU.0.SSSE3=1 CPU.0.AVX=1 CPU.0.AVX_VNNI=1 CPU.0.AVX2=1 CPU.0.F16C=1 CPU.0.FMA=1 CPU.0.BMI2=1 CPU.0.LLAMAFILE=1 CPU.1.LLAMAFILE=1 compiler=cgo(clang)
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 10832347136.00 bytes (10.09 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 23504678912 total: 34337026048
+time=2026-04-17T03:22:28.244+09:00 level=INFO source=model.go:97 msg="gemma4: token IDs" image=255999 image_end=258882 audio=256000 audio_end=258883
+time=2026-04-17T03:22:28.264+09:00 level=INFO source=model.go:138 msg="vision: decode" elapsed=1.5397ms bounds=(0,0)-(2048,2048)
+time=2026-04-17T03:22:28.424+09:00 level=INFO source=model.go:145 msg="vision: preprocess" elapsed=160.6519ms size="[768 768]"
+time=2026-04-17T03:22:28.425+09:00 level=INFO source=model.go:148 msg="vision: pixelValues" shape="[768 768 3]" dim0=768 dim1=768 dim2=3
+time=2026-04-17T03:22:28.425+09:00 level=INFO source=model.go:152 msg="vision: patches" patchesX=48 patchesY=48 total=2304 patchSize=16
+time=2026-04-17T03:22:28.427+09:00 level=INFO source=model.go:156 msg="vision: encoded" elapsed=164.9462ms shape="[1536 256]"
+time=2026-04-17T03:22:28.673+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:alloc LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:36[ID:8680a8a7-0400-0000-0002-000000000000 Layers:36(0..35)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 10817978368.00 bytes (10.08 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 23519047680 total: 34337026048
+ggml_vulkan: Device memory allocation of size 4697620480 failed.
+ggml_vulkan: Requested buffer size exceeds device buffer size limit: ErrorOutOfDeviceMemory
+alloc_tensor_range: failed to allocate Vulkan0 buffer of size 4697620480
+time=2026-04-17T03:22:30.390+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.10
+time=2026-04-17T03:22:30.400+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.20
+time=2026-04-17T03:22:30.402+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.30
+time=2026-04-17T03:22:30.407+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.40
+time=2026-04-17T03:22:30.414+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.50
+time=2026-04-17T03:22:30.416+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.60
+time=2026-04-17T03:22:30.421+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.70
+time=2026-04-17T03:22:30.425+09:00 level=INFO source=server.go:1043 msg="model requires more gpu memory than is currently available, evicting a model to make space" "loaded layers"=35
+time=2026-04-17T03:22:30.426+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:close LoraPath:[] Parallel:0 BatchSize:0 FlashAttention:Disabled KvSize:0 KvCacheType: NumThreads:0 GPULayers:[] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+time=2026-04-17T03:22:30.427+09:00 level=INFO source=device.go:240 msg="model weights" device=Vulkan0 size="6.6 GiB"
+time=2026-04-17T03:22:30.430+09:00 level=INFO source=device.go:245 msg="model weights" device=CPU size="377.0 MiB"
+time=2026-04-17T03:22:30.431+09:00 level=INFO source=device.go:272 msg="total memory" size="7.0 GiB"
+time=2026-04-17T03:22:31.245+09:00 level=INFO source=server.go:444 msg="starting runner" cmd="C:\\Users\\makim\\AppData\\Local\\Programs\\Ollama\\ollama.exe runner --ollama-engine --port 52574"
+time=2026-04-17T03:22:31.893+09:00 level=INFO source=cpu_windows.go:148 msg=packages count=1
+time=2026-04-17T03:22:31.903+09:00 level=INFO source=cpu_windows.go:164 msg="efficiency cores detected" maxEfficiencyClass=1
+time=2026-04-17T03:22:31.906+09:00 level=INFO source=cpu_windows.go:195 msg="" package=0 cores=10 efficiency=4 threads=16
+time=2026-04-17T03:22:32.101+09:00 level=INFO source=sched.go:484 msg="system memory" total="63.7 GiB" free="32.6 GiB" free_swap="31.6 GiB"
+time=2026-04-17T03:22:32.109+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=8680a8a7-0400-0000-0002-000000000000 library=Vulkan available="26.6 GiB" free="27.0 GiB" minimum="457.0 MiB" overhead="0 B"
+time=2026-04-17T03:22:32.110+09:00 level=INFO source=server.go:771 msg="loading model" "model layers"=36 requested=-1
+time=2026-04-17T03:22:32.112+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:fit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:36[ID:8680a8a7-0400-0000-0002-000000000000 Layers:36(0..35)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 5307203584.00 bytes (4.94 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 29029822464 total: 34337026048
+time=2026-04-17T03:22:32.597+09:00 level=INFO source=model.go:97 msg="gemma4: token IDs" image=255999 image_end=258882 audio=256000 audio_end=258883
+time=2026-04-17T03:22:32.668+09:00 level=INFO source=model.go:138 msg="vision: decode" elapsed=2.5516ms bounds=(0,0)-(2048,2048)
+time=2026-04-17T03:22:33.179+09:00 level=INFO source=model.go:145 msg="vision: preprocess" elapsed=510.3904ms size="[768 768]"
+time=2026-04-17T03:22:33.179+09:00 level=INFO source=model.go:148 msg="vision: pixelValues" shape="[768 768 3]" dim0=768 dim1=768 dim2=3
+time=2026-04-17T03:22:33.179+09:00 level=INFO source=model.go:152 msg="vision: patches" patchesX=48 patchesY=48 total=2304 patchSize=16
+time=2026-04-17T03:22:33.180+09:00 level=INFO source=model.go:156 msg="vision: encoded" elapsed=514.3ms shape="[1536 256]"
+time=2026-04-17T03:22:33.527+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:alloc LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:36[ID:8680a8a7-0400-0000-0002-000000000000 Layers:36(0..35)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 5305425920.00 bytes (4.94 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 29031600128 total: 34337026048
+ggml_vulkan: Device memory allocation of size 4697620480 failed.
+ggml_vulkan: Requested buffer size exceeds device buffer size limit: ErrorOutOfDeviceMemory
+alloc_tensor_range: failed to allocate Vulkan0 buffer of size 4697620480
+time=2026-04-17T03:22:34.716+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.10
+time=2026-04-17T03:22:34.727+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.20
+time=2026-04-17T03:22:34.728+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.30
+time=2026-04-17T03:22:34.729+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.40
+time=2026-04-17T03:22:34.730+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.50
+time=2026-04-17T03:22:34.731+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.60
+time=2026-04-17T03:22:34.731+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.70
+time=2026-04-17T03:22:34.731+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.80
+time=2026-04-17T03:22:34.732+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:alloc LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:35[ID:8680a8a7-0400-0000-0002-000000000000 Layers:35(0..34)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 5258231808.00 bytes (4.90 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 29078794240 total: 34337026048
+time=2026-04-17T03:22:35.245+09:00 level=INFO source=model.go:97 msg="gemma4: token IDs" image=255999 image_end=258882 audio=256000 audio_end=258883
+time=2026-04-17T03:22:35.306+09:00 level=INFO source=model.go:138 msg="vision: decode" elapsed=26.5336ms bounds=(0,0)-(2048,2048)
+time=2026-04-17T03:22:35.748+09:00 level=INFO source=model.go:145 msg="vision: preprocess" elapsed=440.9969ms size="[768 768]"
+time=2026-04-17T03:22:35.757+09:00 level=INFO source=model.go:148 msg="vision: pixelValues" shape="[768 768 3]" dim0=768 dim1=768 dim2=3
+time=2026-04-17T03:22:35.757+09:00 level=INFO source=model.go:152 msg="vision: patches" patchesX=48 patchesY=48 total=2304 patchSize=16
+time=2026-04-17T03:22:35.762+09:00 level=INFO source=model.go:156 msg="vision: encoded" elapsed=481.8541ms shape="[1536 256]"
+time=2026-04-17T03:22:36.455+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:commit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:35[ID:8680a8a7-0400-0000-0002-000000000000 Layers:35(0..34)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+time=2026-04-17T03:22:36.455+09:00 level=INFO source=ggml.go:482 msg="offloading 35 repeating layers to GPU"
+time=2026-04-17T03:22:36.455+09:00 level=INFO source=ggml.go:486 msg="offloading output layer to CPU"
+time=2026-04-17T03:22:36.455+09:00 level=INFO source=ggml.go:494 msg="offloaded 35/36 layers to GPU"
+time=2026-04-17T03:22:36.457+09:00 level=INFO source=device.go:240 msg="model weights" device=Vulkan0 size="1.6 GiB"
+time=2026-04-17T03:22:36.466+09:00 level=INFO source=device.go:245 msg="model weights" device=CPU size="5.4 GiB"
+time=2026-04-17T03:22:36.471+09:00 level=INFO source=device.go:251 msg="kv cache" device=Vulkan0 size="246.0 MiB"
+time=2026-04-17T03:22:36.471+09:00 level=INFO source=device.go:262 msg="compute graph" device=Vulkan0 size="156.4 MiB"
+time=2026-04-17T03:22:36.472+09:00 level=INFO source=device.go:267 msg="compute graph" device=CPU size="17.5 MiB"
+time=2026-04-17T03:22:36.473+09:00 level=INFO source=device.go:272 msg="total memory" size="7.4 GiB"
+time=2026-04-17T03:22:36.474+09:00 level=INFO source=sched.go:561 msg="loaded runners" count=1
+time=2026-04-17T03:22:36.474+09:00 level=INFO source=server.go:1364 msg="waiting for llama runner to start responding"
+time=2026-04-17T03:22:36.476+09:00 level=INFO source=server.go:1398 msg="waiting for server to become available" status="llm server loading model"
+time=2026-04-17T03:22:55.829+09:00 level=INFO source=server.go:1402 msg="llama runner started in 28.22 seconds"
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 7333081088.00 bytes (6.83 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 27003944960 total: 34337026048
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 7322550272.00 bytes (6.82 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 27014475776 total: 34337026048
+time=2026-04-17T03:23:14.027+09:00 level=INFO source=cpu_windows.go:148 msg=packages count=1
+time=2026-04-17T03:23:14.039+09:00 level=INFO source=cpu_windows.go:164 msg="efficiency cores detected" maxEfficiencyClass=1
+time=2026-04-17T03:23:14.041+09:00 level=INFO source=cpu_windows.go:195 msg="" package=0 cores=10 efficiency=4 threads=16
+time=2026-04-17T03:23:14.042+09:00 level=INFO source=sched.go:627 msg="updated VRAM based on existing loaded models" gpu=8680a8a7-0400-0000-0002-000000000000 library=Vulkan total="32.0 GiB" available="25.2 GiB"
+time=2026-04-17T03:23:14.982+09:00 level=INFO source=model.go:97 msg="gemma4: token IDs" image=255999 image_end=258882 audio=256000 audio_end=258883
+time=2026-04-17T03:23:14.986+09:00 level=INFO source=server.go:259 msg="enabling flash attention"
+time=2026-04-17T03:23:14.997+09:00 level=INFO source=server.go:444 msg="starting runner" cmd="C:\\Users\\makim\\AppData\\Local\\Programs\\Ollama\\ollama.exe runner --ollama-engine --model C:\\Users\\makim\\.ollama\\models\\blobs\\sha256-e049411c01fb7a81161768c52e38828970e55a64e22738957adcbe51d20f1c8e --port 53167"
+time=2026-04-17T03:23:15.012+09:00 level=INFO source=sched.go:484 msg="system memory" total="63.7 GiB" free="25.3 GiB" free_swap="23.7 GiB"
+time=2026-04-17T03:23:15.014+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=8680a8a7-0400-0000-0002-000000000000 library=Vulkan available="24.7 GiB" free="25.2 GiB" minimum="457.0 MiB" overhead="0 B"
+time=2026-04-17T03:23:15.016+09:00 level=INFO source=server.go:771 msg="loading model" "model layers"=36 requested=-1
+time=2026-04-17T03:23:15.108+09:00 level=INFO source=runner.go:1417 msg="starting ollama engine"
+time=2026-04-17T03:23:15.130+09:00 level=INFO source=runner.go:1452 msg="Server listening on 127.0.0.1:53167"
+time=2026-04-17T03:23:15.136+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:fit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:36[ID:8680a8a7-0400-0000-0002-000000000000 Layers:36(0..35)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+time=2026-04-17T03:23:15.230+09:00 level=INFO source=ggml.go:136 msg="" architecture=gemma4 file_type=Q8_0 name="" description="" num_tensors=601 num_key_values=45
+load_backend: loaded CPU backend from C:\Users\makim\AppData\Local\Programs\Ollama\lib\ollama\ggml-cpu-alderlake.dll
+ggml_vulkan: Found 1 Vulkan devices:
+ggml_vulkan: 0 = Intel(R) UHD Graphics (Intel Corporation) | uma: 1 | fp16: 1 | bf16: 0 | warp size: 32 | shared memory: 32768 | int dot: 1 | matrix cores: none
+load_backend: loaded Vulkan backend from C:\Users\makim\AppData\Local\Programs\Ollama\lib\ollama\vulkan\ggml-vulkan.dll
+time=2026-04-17T03:23:15.363+09:00 level=INFO source=ggml.go:104 msg=system CPU.0.SSE3=1 CPU.0.SSSE3=1 CPU.0.AVX=1 CPU.0.AVX_VNNI=1 CPU.0.AVX2=1 CPU.0.F16C=1 CPU.0.FMA=1 CPU.0.BMI2=1 CPU.0.LLAMAFILE=1 CPU.1.LLAMAFILE=1 compiler=cgo(clang)
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 7332044800.00 bytes (6.83 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 27004981248 total: 34337026048
+time=2026-04-17T03:23:15.694+09:00 level=INFO source=model.go:97 msg="gemma4: token IDs" image=255999 image_end=258882 audio=256000 audio_end=258883
+time=2026-04-17T03:23:15.762+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:alloc LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:36[ID:8680a8a7-0400-0000-0002-000000000000 Layers:36(0..35)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 7321133056.00 bytes (6.82 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 27015892992 total: 34337026048
+time=2026-04-17T03:23:18.088+09:00 level=INFO source=model.go:97 msg="gemma4: token IDs" image=255999 image_end=258882 audio=256000 audio_end=258883
+time=2026-04-17T03:23:20.636+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:commit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:36[ID:8680a8a7-0400-0000-0002-000000000000 Layers:36(0..35)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+time=2026-04-17T03:23:20.636+09:00 level=INFO source=ggml.go:482 msg="offloading 35 repeating layers to GPU"
+time=2026-04-17T03:23:20.636+09:00 level=INFO source=ggml.go:489 msg="offloading output layer to GPU"
+time=2026-04-17T03:23:20.636+09:00 level=INFO source=ggml.go:494 msg="offloaded 36/36 layers to GPU"
+time=2026-04-17T03:23:20.637+09:00 level=INFO source=device.go:240 msg="model weights" device=Vulkan0 size="4.6 GiB"
+time=2026-04-17T03:23:20.642+09:00 level=INFO source=device.go:245 msg="model weights" device=CPU size="408.0 MiB"
+time=2026-04-17T03:23:20.642+09:00 level=INFO source=device.go:251 msg="kv cache" device=Vulkan0 size="246.0 MiB"
+time=2026-04-17T03:23:20.643+09:00 level=INFO source=device.go:262 msg="compute graph" device=Vulkan0 size="165.0 MiB"
+time=2026-04-17T03:23:20.643+09:00 level=INFO source=device.go:267 msg="compute graph" device=CPU size="3.0 MiB"
+time=2026-04-17T03:23:20.643+09:00 level=INFO source=device.go:272 msg="total memory" size="5.4 GiB"
+time=2026-04-17T03:23:20.644+09:00 level=INFO source=sched.go:561 msg="loaded runners" count=2
+time=2026-04-17T03:23:20.645+09:00 level=INFO source=server.go:1364 msg="waiting for llama runner to start responding"
+time=2026-04-17T03:23:20.646+09:00 level=INFO source=server.go:1398 msg="waiting for server to become available" status="llm server loading model"
+time=2026-04-17T03:23:48.697+09:00 level=INFO source=server.go:1402 msg="llama runner started in 33.69 seconds"
+time=2026-04-17T03:23:49.222+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:24:31.622+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:24:33.443+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:24:34.602+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:24:35.849+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:25:05.949+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:25:16.499+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:25:26.598+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:25:37.304+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:25:48.091+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:25:56.872+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:26:38.012+09:00 level=WARN source=types.go:977 msg="invalid option provided" option=ignore_eos
+time=2026-04-17T03:26:38.423+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:27:04.021+09:00 level=WARN source=types.go:977 msg="invalid option provided" option=ignore_eos
+time=2026-04-17T03:27:04.508+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:27:12.978+09:00 level=WARN source=types.go:977 msg="invalid option provided" option=ignore_eos
+time=2026-04-17T03:27:13.200+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:27:21.590+09:00 level=WARN source=types.go:977 msg="invalid option provided" option=ignore_eos
+time=2026-04-17T03:27:21.996+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:27:30.537+09:00 level=WARN source=types.go:977 msg="invalid option provided" option=ignore_eos
+time=2026-04-17T03:27:30.720+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:27:39.357+09:00 level=WARN source=types.go:977 msg="invalid option provided" option=ignore_eos
+time=2026-04-17T03:27:39.549+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:27:48.135+09:00 level=WARN source=types.go:977 msg="invalid option provided" option=ignore_eos
+time=2026-04-17T03:27:48.510+09:00 level=WARN source=vocabulary.go:49 msg="adding bos token to prompt which already has it" id=[2]
+time=2026-04-17T03:40:31.607+09:00 level=WARN source=types.go:977 msg="invalid option provided" option=ignore_eos
+time=2026-04-17T03:40:31.856+09:00 level=INFO source=server.go:444 msg="starting runner" cmd="C:\\Users\\makim\\AppData\\Local\\Programs\\Ollama\\ollama.exe runner --ollama-engine --port 64607"
+time=2026-04-17T03:40:32.621+09:00 level=INFO source=cpu_windows.go:148 msg=packages count=1
+time=2026-04-17T03:40:32.630+09:00 level=INFO source=cpu_windows.go:164 msg="efficiency cores detected" maxEfficiencyClass=1
+time=2026-04-17T03:40:32.631+09:00 level=INFO source=cpu_windows.go:195 msg="" package=0 cores=10 efficiency=4 threads=16
+time=2026-04-17T03:40:33.279+09:00 level=INFO source=model.go:97 msg="gemma4: token IDs" image=255999 image_end=258882 audio=256000 audio_end=258883
+time=2026-04-17T03:40:33.280+09:00 level=INFO source=server.go:259 msg="enabling flash attention"
+time=2026-04-17T03:40:33.282+09:00 level=INFO source=server.go:444 msg="starting runner" cmd="C:\\Users\\makim\\AppData\\Local\\Programs\\Ollama\\ollama.exe runner --ollama-engine --model C:\\Users\\makim\\.ollama\\models\\blobs\\sha256-4e30e2665218745ef463f722c0bf86be0cab6ee676320f1cfadf91e989107448 --port 59121"
+time=2026-04-17T03:40:33.294+09:00 level=INFO source=sched.go:484 msg="system memory" total="63.7 GiB" free="35.7 GiB" free_swap="33.6 GiB"
+time=2026-04-17T03:40:33.294+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=8680a8a7-0400-0000-0002-000000000000 library=Vulkan available="26.7 GiB" free="27.1 GiB" minimum="457.0 MiB" overhead="0 B"
+time=2026-04-17T03:40:33.297+09:00 level=INFO source=server.go:771 msg="loading model" "model layers"=36 requested=-1
+time=2026-04-17T03:40:33.384+09:00 level=INFO source=runner.go:1417 msg="starting ollama engine"
+time=2026-04-17T03:40:33.405+09:00 level=INFO source=runner.go:1452 msg="Server listening on 127.0.0.1:59121"
+time=2026-04-17T03:40:33.420+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:fit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:36[ID:8680a8a7-0400-0000-0002-000000000000 Layers:36(0..35)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+time=2026-04-17T03:40:33.586+09:00 level=INFO source=ggml.go:136 msg="" architecture=gemma4 file_type=Q4_K_M name="" description="" num_tensors=2012 num_key_values=55
+load_backend: loaded CPU backend from C:\Users\makim\AppData\Local\Programs\Ollama\lib\ollama\ggml-cpu-alderlake.dll
+ggml_vulkan: Found 1 Vulkan devices:
+ggml_vulkan: 0 = Intel(R) UHD Graphics (Intel Corporation) | uma: 1 | fp16: 1 | bf16: 0 | warp size: 32 | shared memory: 32768 | int dot: 1 | matrix cores: none
+load_backend: loaded Vulkan backend from C:\Users\makim\AppData\Local\Programs\Ollama\lib\ollama\vulkan\ggml-vulkan.dll
+time=2026-04-17T03:40:33.680+09:00 level=INFO source=ggml.go:104 msg=system CPU.0.SSE3=1 CPU.0.SSSE3=1 CPU.0.AVX=1 CPU.0.AVX_VNNI=1 CPU.0.AVX2=1 CPU.0.F16C=1 CPU.0.FMA=1 CPU.0.BMI2=1 CPU.0.LLAMAFILE=1 CPU.1.LLAMAFILE=1 compiler=cgo(clang)
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 5184761856.00 bytes (4.83 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 29152264192 total: 34337026048
+time=2026-04-17T03:40:33.975+09:00 level=INFO source=model.go:97 msg="gemma4: token IDs" image=255999 image_end=258882 audio=256000 audio_end=258883
+time=2026-04-17T03:40:34.000+09:00 level=INFO source=model.go:138 msg="vision: decode" elapsed=1.5207ms bounds=(0,0)-(2048,2048)
+time=2026-04-17T03:40:34.144+09:00 level=INFO source=model.go:145 msg="vision: preprocess" elapsed=144.8105ms size="[768 768]"
+time=2026-04-17T03:40:34.144+09:00 level=INFO source=model.go:148 msg="vision: pixelValues" shape="[768 768 3]" dim0=768 dim1=768 dim2=3
+time=2026-04-17T03:40:34.144+09:00 level=INFO source=model.go:152 msg="vision: patches" patchesX=48 patchesY=48 total=2304 patchSize=16
+time=2026-04-17T03:40:34.145+09:00 level=INFO source=model.go:156 msg="vision: encoded" elapsed=147.1628ms shape="[1536 256]"
+time=2026-04-17T03:40:34.272+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:alloc LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:36[ID:8680a8a7-0400-0000-0002-000000000000 Layers:36(0..35)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 5184757760.00 bytes (4.83 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 29152268288 total: 34337026048
+ggml_vulkan: Device memory allocation of size 4697620480 failed.
+ggml_vulkan: Requested buffer size exceeds device buffer size limit: ErrorOutOfDeviceMemory
+alloc_tensor_range: failed to allocate Vulkan0 buffer of size 4697620480
+time=2026-04-17T03:40:34.865+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.10
+time=2026-04-17T03:40:34.877+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.20
+time=2026-04-17T03:40:34.879+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.30
+time=2026-04-17T03:40:34.880+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.40
+time=2026-04-17T03:40:34.881+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.50
+time=2026-04-17T03:40:34.881+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.60
+time=2026-04-17T03:40:34.882+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.70
+time=2026-04-17T03:40:34.883+09:00 level=INFO source=server.go:893 msg="model layout did not fit, applying backoff" backoff=0.80
+time=2026-04-17T03:40:34.884+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:alloc LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:35[ID:8680a8a7-0400-0000-0002-000000000000 Layers:35(0..34)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+ggml_backend_vk_get_device_memory called: uuid 8680a8a7-0400-0000-0002-000000000000
+ggml_backend_vk_get_device_memory called: luid 0x0000000000010f1e
+ggml_dxgi_pdh_init called
+DXGI + PDH Initialized. Getting GPU free memory info
+[DXGI] Adapter Description: Intel(R) UHD Graphics, LUID: 0x0000000000010F1E, Dedicated: 0.12 GB, Shared: 31.85 GB
+[DXGI] Adapter Description: Microsoft Basic Render Driver, LUID: 0x00000000000112DD, Dedicated: 0.00 GB, Shared: 31.85 GB
+Integrated GPU (Intel(R) UHD Graphics) with LUID 0x0000000000010f1e detected. Shared Total: 34202808320.00 bytes (31.85 GB), Shared Usage: 5184761856.00 bytes (4.83 GB), Dedicated Total: 134217728.00 bytes (0.12 GB), Dedicated Usage: 0.00 bytes (0.00 GB)
+ggml_backend_vk_get_device_memory utilizing DXGI + PDH memory reporting free: 29152264192 total: 34337026048
+time=2026-04-17T03:40:35.148+09:00 level=INFO source=model.go:97 msg="gemma4: token IDs" image=255999 image_end=258882 audio=256000 audio_end=258883
+time=2026-04-17T03:40:35.174+09:00 level=INFO source=model.go:138 msg="vision: decode" elapsed=11.3078ms bounds=(0,0)-(2048,2048)
+time=2026-04-17T03:40:35.304+09:00 level=INFO source=model.go:145 msg="vision: preprocess" elapsed=129.4167ms size="[768 768]"
+time=2026-04-17T03:40:35.306+09:00 level=INFO source=model.go:148 msg="vision: pixelValues" shape="[768 768 3]" dim0=768 dim1=768 dim2=3
+time=2026-04-17T03:40:35.306+09:00 level=INFO source=model.go:152 msg="vision: patches" patchesX=48 patchesY=48 total=2304 patchSize=16
+time=2026-04-17T03:40:35.306+09:00 level=INFO source=model.go:156 msg="vision: encoded" elapsed=143.6901ms shape="[1536 256]"
+time=2026-04-17T03:40:35.630+09:00 level=INFO source=runner.go:1290 msg=load request="{Operation:commit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Enabled KvSize:32768 KvCacheType: NumThreads:6 GPULayers:35[ID:8680a8a7-0400-0000-0002-000000000000 Layers:35(0..34)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+time=2026-04-17T03:40:35.630+09:00 level=INFO source=ggml.go:482 msg="offloading 35 repeating layers to GPU"
+time=2026-04-17T03:40:35.630+09:00 level=INFO source=ggml.go:486 msg="offloading output layer to CPU"
+time=2026-04-17T03:40:35.630+09:00 level=INFO source=ggml.go:494 msg="offloaded 35/36 layers to GPU"
+time=2026-04-17T03:40:35.630+09:00 level=INFO source=device.go:240 msg="model weights" device=Vulkan0 size="1.6 GiB"
+time=2026-04-17T03:40:35.640+09:00 level=INFO source=device.go:245 msg="model weights" device=CPU size="5.4 GiB"
+time=2026-04-17T03:40:35.641+09:00 level=INFO source=device.go:251 msg="kv cache" device=Vulkan0 size="246.0 MiB"
+time=2026-04-17T03:40:35.641+09:00 level=INFO source=device.go:262 msg="compute graph" device=Vulkan0 size="156.4 MiB"
+time=2026-04-17T03:40:35.641+09:00 level=INFO source=device.go:267 msg="compute graph" device=CPU size="17.5 MiB"
+time=2026-04-17T03:40:35.641+09:00 level=INFO source=device.go:272 msg="total memory" size="7.4 GiB"
+time=2026-04-17T03:40:35.642+09:00 level=INFO source=sched.go:561 msg="loaded runners" count=1
+time=2026-04-17T03:40:35.642+09:00 level=INFO source=server.go:1364 msg="waiting for llama runner to start responding"
+time=2026-04-17T03:40:35.642+09:00 level=INFO source=server.go:1398 msg="waiting for server to become available" status="llm server loading model"
+time=2026-04-17T03:40:52.296+09:00 level=INFO source=server.go:1402 msg="llama runner started in 19.00 seconds"
+time=2026-04-17T03:40:54.603+09:00 level=WARN source=types.go:977 msg="invalid option provided" option=ignore_eos
+time=2026-04-17T03:41:03.870+09:00 level=WARN source=types.go:977 msg="invalid option provided" option=ignore_eos
+time=2026-04-17T03:41:11.873+09:00 level=WARN source=types.go:977 msg="invalid option provided" option=ignore_eos

@@ -1,0 +1,33 @@
+diff --git a/ggml/src/ggml-vulkan/ggml-vulkan.cpp b/ggml/src/ggml-vulkan/ggml-vulkan.cpp
+index 702a249..ab99c63 100644
+--- a/ggml/src/ggml-vulkan/ggml-vulkan.cpp
++++ b/ggml/src/ggml-vulkan/ggml-vulkan.cpp
+@@ -22,7 +22,7 @@ DispatchLoaderDynamic & ggml_vk_default_dispatcher();
+ #include <vulkan/vulkan.hpp>
+ // SPIRV-Headers: LunarG Windows SDK uses Include/spirv-headers/spirv.hpp (not spirv/unified1/). MinGW/MSYS2 and
+ // Linux packages use Khronos layout spirv/unified1/spirv.hpp. See docs/build.md#vulkan.
+-#if defined(_WIN32) && !defined(__MINGW32__)
++#if defined(_WIN32)
+ #include <spirv-headers/spirv.hpp>
+ #else
+ #include <spirv/unified1/spirv.hpp>
+diff --git a/vendor/cpp-httplib/httplib.cpp b/vendor/cpp-httplib/httplib.cpp
+index 8ff1da5..f9b632b 100644
+--- a/vendor/cpp-httplib/httplib.cpp
++++ b/vendor/cpp-httplib/httplib.cpp
+@@ -1460,8 +1460,15 @@ bool mmap::open(const char *path) {
+   auto wpath = u8string_to_wstring(path);
+   if (wpath.empty()) { return false; }
+ 
++  // MinGW headers may not declare CreateFile2 even on supported Windows
++  // targets, so fall back to the older CreateFileW signature there.
++#if defined(__MINGW32__)
++  hFile_ = ::CreateFileW(wpath.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL,
++                         OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
++#else
+   hFile_ = ::CreateFile2(wpath.c_str(), GENERIC_READ, FILE_SHARE_READ,
+                          OPEN_EXISTING, NULL);
++#endif
+ 
+   if (hFile_ == INVALID_HANDLE_VALUE) { return false; }
+ 

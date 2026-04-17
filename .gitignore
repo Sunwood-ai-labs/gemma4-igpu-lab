@@ -1,0 +1,23 @@
+# Large local experiment artifacts
+models/
+src/
+tools/
+build/
+dist/
+
+# Model and archive files
+*.gguf
+*.zip
+*.7z
+*.tar
+*.gz
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# OS and editor
+.DS_Store
+Thumbs.db
