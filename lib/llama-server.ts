@@ -3,6 +3,8 @@ import { closeSync, existsSync, mkdirSync, openSync, readFileSync, truncateSync 
 import os from "node:os";
 import path from "node:path";
 
+export type RuntimeKind = "llamacpp" | "ollama";
+
 export type LlamaServerConfig = {
   serverExe: string;
   modelPath: string;
@@ -16,25 +18,67 @@ export type LlamaServerConfig = {
   systemPrompt: string;
 };
 
-type LlamaServerState = {
+export type OllamaServerConfig = {
+  serverExe: string;
+  host: string;
+  port: number;
+  model: string;
+  maxTokens: number;
+  temperature: number;
+  keepAlive: string;
+  extraPath: string;
+  systemPrompt: string;
+};
+
+export type RuntimeLabConfig = {
+  selectedRuntime: RuntimeKind;
+  llama: LlamaServerConfig;
+  ollama: OllamaServerConfig;
+};
+
+export type RuntimeStatusResponse = {
+  runtime: RuntimeKind;
+  running: boolean;
+  reachable: boolean;
+  health: Record<string, unknown> | null;
+  config: LlamaServerConfig | OllamaServerConfig;
+  stdoutPath: string;
+  stderrPath: string;
+  backendLabel: string;
+};
+
+type RuntimeProcessState<TConfig> = {
   process: ChildProcessWithoutNullStreams | null;
-  config: LlamaServerConfig | null;
+  config: TConfig | null;
   stdoutPath: string;
   stderrPath: string;
 };
 
+type RuntimeState = {
+  llamacpp: RuntimeProcessState<LlamaServerConfig>;
+  ollama: RuntimeProcessState<OllamaServerConfig>;
+};
+
 declare global {
   // eslint-disable-next-line no-var
-  var __gemma4LlamaServerState: LlamaServerState | undefined;
+  var __gemma4RuntimeState: RuntimeState | undefined;
 }
 
-const state: LlamaServerState =
-  globalThis.__gemma4LlamaServerState ??
-  (globalThis.__gemma4LlamaServerState = {
-    process: null,
-    config: null,
-    stdoutPath: path.resolve(process.cwd(), "logs", "llama-server-web.stdout.log"),
-    stderrPath: path.resolve(process.cwd(), "logs", "llama-server-web.stderr.log"),
+const state: RuntimeState =
+  globalThis.__gemma4RuntimeState ??
+  (globalThis.__gemma4RuntimeState = {
+    llamacpp: {
+      process: null,
+      config: null,
+      stdoutPath: path.resolve(process.cwd(), "logs", "llama-server-web.stdout.log"),
+      stderrPath: path.resolve(process.cwd(), "logs", "llama-server-web.stderr.log"),
+    },
+    ollama: {
+      process: null,
+      config: null,
+      stdoutPath: path.resolve(process.cwd(), "logs", "ollama-serve-web.stdout.log"),
+      stderrPath: path.resolve(process.cwd(), "logs", "ollama-serve-web.stderr.log"),
+    },
   });
 
 export function getRepoRoot() {
@@ -43,6 +87,10 @@ export function getRepoRoot() {
 
 export function getWorkRoot() {
   return path.resolve(getRepoRoot(), "../Work");
+}
+
+export function getRuntimeLabel(runtime: RuntimeKind) {
+  return runtime === "llamacpp" ? "llama.cpp + Vulkan" : "Ollama";
 }
 
 function detectWinlibsBin() {
@@ -103,6 +151,19 @@ function detectVulkanBin() {
   return "";
 }
 
+function detectOllamaExe() {
+  const candidate = path.join(
+    os.homedir(),
+    "AppData",
+    "Local",
+    "Programs",
+    "Ollama",
+    "ollama.exe"
+  );
+
+  return existsSync(candidate) ? candidate : "ollama";
+}
+
 export function getDefaultServerConfig(): LlamaServerConfig {
   const extra = [detectWinlibsBin(), detectVulkanBin()].filter(Boolean).join(";");
 
@@ -121,15 +182,30 @@ export function getDefaultServerConfig(): LlamaServerConfig {
   };
 }
 
-function getHealthUrl(config: Pick<LlamaServerConfig, "host" | "port">) {
-  return `http://${config.host}:${config.port}/health`;
+export function getDefaultOllamaConfig(): OllamaServerConfig {
+  return {
+    serverExe: detectOllamaExe(),
+    host: "127.0.0.1",
+    port: 11434,
+    model: "gemma4e2b-q8-local:latest",
+    maxTokens: 256,
+    temperature: 0,
+    keepAlive: "30m",
+    extraPath: "",
+    systemPrompt:
+      "You are a concise and practical local assistant. Answer clearly, avoid filler, and prioritize fast useful output.",
+  };
 }
 
-function isTrackedProcessRunning() {
-  return Boolean(state.process && state.process.exitCode === null && !state.process.killed);
+export function getDefaultLabConfig(): RuntimeLabConfig {
+  return {
+    selectedRuntime: "llamacpp",
+    llama: getDefaultServerConfig(),
+    ollama: getDefaultOllamaConfig(),
+  };
 }
 
-function normalizeConfig(input?: Partial<LlamaServerConfig>): LlamaServerConfig {
+function normalizeLlamaConfig(input?: Partial<LlamaServerConfig>): LlamaServerConfig {
   const defaults = getDefaultServerConfig();
   return {
     ...defaults,
@@ -141,9 +217,60 @@ function normalizeConfig(input?: Partial<LlamaServerConfig>): LlamaServerConfig 
   };
 }
 
-async function pingHealth(config: Pick<LlamaServerConfig, "host" | "port">) {
+function normalizeOllamaConfig(input?: Partial<OllamaServerConfig>): OllamaServerConfig {
+  const defaults = getDefaultOllamaConfig();
+  return {
+    ...defaults,
+    ...input,
+    port: Number(input?.port ?? defaults.port),
+    maxTokens: Number(input?.maxTokens ?? defaults.maxTokens),
+    temperature: Number(input?.temperature ?? defaults.temperature),
+  };
+}
+
+export function normalizeLabConfig(input?: Partial<RuntimeLabConfig>): RuntimeLabConfig {
+  const defaults = getDefaultLabConfig();
+
+  return {
+    selectedRuntime:
+      input?.selectedRuntime === "ollama" || input?.selectedRuntime === "llamacpp"
+        ? input.selectedRuntime
+        : defaults.selectedRuntime,
+    llama: normalizeLlamaConfig(input?.llama),
+    ollama: normalizeOllamaConfig(input?.ollama),
+  };
+}
+
+export function getRuntimeConfig(
+  config: RuntimeLabConfig,
+  runtime: RuntimeKind
+): LlamaServerConfig | OllamaServerConfig {
+  return runtime === "llamacpp" ? config.llama : config.ollama;
+}
+
+function getHealthUrl(
+  runtime: RuntimeKind,
+  config: Pick<LlamaServerConfig, "host" | "port"> | Pick<OllamaServerConfig, "host" | "port">
+) {
+  const pathName = runtime === "llamacpp" ? "/health" : "/api/version";
+  return `http://${config.host}:${config.port}${pathName}`;
+}
+
+function getProcessState(runtime: RuntimeKind) {
+  return state[runtime];
+}
+
+function isTrackedProcessRunning(runtime: RuntimeKind) {
+  const runtimeState = getProcessState(runtime);
+  return Boolean(runtimeState.process && runtimeState.process.exitCode === null && !runtimeState.process.killed);
+}
+
+async function pingHealth(
+  runtime: RuntimeKind,
+  config: Pick<LlamaServerConfig, "host" | "port"> | Pick<OllamaServerConfig, "host" | "port">
+) {
   try {
-    const response = await fetch(getHealthUrl(config), { cache: "no-store" });
+    const response = await fetch(getHealthUrl(runtime, config), { cache: "no-store" });
     if (!response.ok) return { ok: false, body: null };
     const body = (await response.json()) as Record<string, unknown>;
     return { ok: true, body };
@@ -152,45 +279,99 @@ async function pingHealth(config: Pick<LlamaServerConfig, "host" | "port">) {
   }
 }
 
-export function tailServerLog(kind: "stdout" | "stderr", lines = 40) {
-  const target = kind === "stdout" ? state.stdoutPath : state.stderrPath;
+export function tailServerLog(runtime: RuntimeKind, kind: "stdout" | "stderr", lines = 40) {
+  const runtimeState = getProcessState(runtime);
+  const target = kind === "stdout" ? runtimeState.stdoutPath : runtimeState.stderrPath;
   if (!existsSync(target)) return "";
   const text = readFileSync(target, "utf8");
   return text.split(/\r?\n/).slice(-lines).join("\n");
 }
 
-export async function getServerStatus(input?: Partial<LlamaServerConfig>) {
-  const config = normalizeConfig(input);
-  const health = await pingHealth(config);
+export async function getServerStatus(
+  input?: Partial<RuntimeLabConfig>,
+  runtimeInput?: RuntimeKind
+): Promise<RuntimeStatusResponse> {
+  const config = normalizeLabConfig(input);
+  const runtime = runtimeInput ?? config.selectedRuntime;
+  const runtimeConfig = getRuntimeConfig(config, runtime);
+  const health = await pingHealth(runtime, runtimeConfig);
+  const runtimeState = getProcessState(runtime);
 
   return {
-    running: isTrackedProcessRunning(),
+    runtime,
+    running: isTrackedProcessRunning(runtime),
     reachable: health.ok,
     health: health.body,
-    config,
-    stdoutPath: state.stdoutPath,
-    stderrPath: state.stderrPath,
+    config: runtimeConfig,
+    stdoutPath: runtimeState.stdoutPath,
+    stderrPath: runtimeState.stderrPath,
+    backendLabel: getRuntimeLabel(runtime),
   };
 }
 
-export async function startServer(input?: Partial<LlamaServerConfig>) {
-  const config = normalizeConfig(input);
+export async function startServer(input?: Partial<RuntimeLabConfig>, runtimeInput?: RuntimeKind) {
+  const config = normalizeLabConfig(input);
+  const runtime = runtimeInput ?? config.selectedRuntime;
 
-  if (isTrackedProcessRunning()) {
+  return runtime === "llamacpp"
+    ? startLlamaServer(config.llama)
+    : startOllamaServer(config.ollama);
+}
+
+export async function stopServer(runtimeInput?: RuntimeKind | "all") {
+  const runtimes: Array<RuntimeKind> =
+    runtimeInput === "all" || runtimeInput === undefined
+      ? ["llamacpp", "ollama"]
+      : [runtimeInput];
+
+  const stopped: string[] = [];
+
+  for (const runtime of runtimes) {
+    const runtimeState = getProcessState(runtime);
+    if (isTrackedProcessRunning(runtime)) {
+      runtimeState.process?.kill();
+      stopped.push(getRuntimeLabel(runtime));
+    }
+    runtimeState.process = null;
+  }
+
+  await sleep(800);
+
+  if (runtimeInput === "all" || runtimeInput === undefined) {
     return {
       ok: true,
-      message: `llama-server is already running on ${getHealthUrl(config)}.`,
-      status: await getServerStatus(config),
+      message:
+        stopped.length > 0
+          ? `Stopped tracked runtimes: ${stopped.join(", ")}.`
+          : "No tracked runtimes were running.",
     };
   }
 
-  const existing = await pingHealth(config);
-  if (existing.ok) {
-    state.config = config;
+  return {
+    ok: true,
+    message:
+      stopped.length > 0
+        ? `${stopped[0]} stopped.`
+        : `${getRuntimeLabel(runtimeInput)} is not running as a tracked process.`,
+  };
+}
+
+async function startLlamaServer(config: LlamaServerConfig) {
+  if (isTrackedProcessRunning("llamacpp")) {
     return {
       ok: true,
-      message: `An external llama-server is already reachable on ${getHealthUrl(config)}.`,
-      status: await getServerStatus(config),
+      message: `llama-server is already running on ${getHealthUrl("llamacpp", config)}.`,
+      status: await getServerStatus({ selectedRuntime: "llamacpp", llama: config }, "llamacpp"),
+    };
+  }
+
+  const existing = await pingHealth("llamacpp", config);
+  if (existing.ok) {
+    state.llamacpp.config = config;
+    return {
+      ok: true,
+      message: `An external llama-server is already reachable on ${getHealthUrl("llamacpp", config)}.`,
+      status: await getServerStatus({ selectedRuntime: "llamacpp", llama: config }, "llamacpp"),
     };
   }
 
@@ -202,16 +383,16 @@ export async function startServer(input?: Partial<LlamaServerConfig>) {
     return { ok: false, message: `Model file not found: ${config.modelPath}` };
   }
 
-  ensureEmptyFile(state.stdoutPath);
-  ensureEmptyFile(state.stderrPath);
+  ensureEmptyFile(state.llamacpp.stdoutPath);
+  ensureEmptyFile(state.llamacpp.stderrPath);
 
-  const env = { ...process.env };
+  const env: NodeJS.ProcessEnv = { ...process.env };
   if (config.extraPath.trim()) {
     env.PATH = `${config.extraPath};${env.PATH ?? ""}`;
   }
 
-  const stdoutFd = openSync(state.stdoutPath, "w");
-  const stderrFd = openSync(state.stderrPath, "w");
+  const stdoutFd = openSync(state.llamacpp.stdoutPath, "w");
+  const stderrFd = openSync(state.llamacpp.stderrPath, "w");
 
   const child = spawn(
     config.serverExe,
@@ -246,48 +427,112 @@ export async function startServer(input?: Partial<LlamaServerConfig>) {
   closeSync(stdoutFd);
   closeSync(stderrFd);
 
-  state.process = child as ChildProcessWithoutNullStreams;
-  state.config = config;
+  state.llamacpp.process = child as ChildProcessWithoutNullStreams;
+  state.llamacpp.config = config;
 
   for (let attempt = 0; attempt < 120; attempt += 1) {
     await sleep(1000);
 
-    if (!isTrackedProcessRunning()) {
-      const stderrTail = tailServerLog("stderr");
-      state.process = null;
+    if (!isTrackedProcessRunning("llamacpp")) {
+      const stderrTail = tailServerLog("llamacpp", "stderr");
+      state.llamacpp.process = null;
       return {
         ok: false,
         message: `llama-server exited during startup.\n\n${stderrTail || "(no stderr output)"}`,
       };
     }
 
-    const result = await pingHealth(config);
+    const result = await pingHealth("llamacpp", config);
     if (result.ok) {
       return {
         ok: true,
-        message: `llama-server is ready on ${getHealthUrl(config)}.`,
-        status: await getServerStatus(config),
+        message: `llama-server is ready on ${getHealthUrl("llamacpp", config)}.`,
+        status: await getServerStatus({ selectedRuntime: "llamacpp", llama: config }, "llamacpp"),
       };
     }
   }
 
-  await stopServer();
+  await stopServer("llamacpp");
   return {
     ok: false,
     message: "Timed out waiting for llama-server health check.",
   };
 }
 
-export async function stopServer() {
-  if (!isTrackedProcessRunning()) {
-    state.process = null;
-    return { ok: true, message: "llama-server is not running." };
+async function startOllamaServer(config: OllamaServerConfig) {
+  if (isTrackedProcessRunning("ollama")) {
+    return {
+      ok: true,
+      message: `Ollama is already running on ${getHealthUrl("ollama", config)}.`,
+      status: await getServerStatus({ selectedRuntime: "ollama", ollama: config }, "ollama"),
+    };
   }
 
-  state.process?.kill();
-  state.process = null;
-  await sleep(800);
-  return { ok: true, message: "llama-server stopped." };
+  const existing = await pingHealth("ollama", config);
+  if (existing.ok) {
+    state.ollama.config = config;
+    return {
+      ok: true,
+      message: `An external Ollama server is already reachable on ${getHealthUrl("ollama", config)}.`,
+      status: await getServerStatus({ selectedRuntime: "ollama", ollama: config }, "ollama"),
+    };
+  }
+
+  if (!existsSync(config.serverExe) && config.serverExe !== "ollama") {
+    return { ok: false, message: `ollama.exe not found: ${config.serverExe}` };
+  }
+
+  ensureEmptyFile(state.ollama.stdoutPath);
+  ensureEmptyFile(state.ollama.stderrPath);
+
+  const env: NodeJS.ProcessEnv = { ...process.env, OLLAMA_HOST: `${config.host}:${config.port}` };
+  if (config.extraPath.trim()) {
+    env.PATH = `${config.extraPath};${env.PATH ?? ""}`;
+  }
+
+  const stdoutFd = openSync(state.ollama.stdoutPath, "w");
+  const stderrFd = openSync(state.ollama.stderrPath, "w");
+
+  const child = spawn(config.serverExe, ["serve"], {
+    cwd: getRepoRoot(),
+    env,
+    stdio: ["ignore", stdoutFd, stderrFd],
+    windowsHide: true,
+  });
+
+  closeSync(stdoutFd);
+  closeSync(stderrFd);
+
+  state.ollama.process = child as ChildProcessWithoutNullStreams;
+  state.ollama.config = config;
+
+  for (let attempt = 0; attempt < 120; attempt += 1) {
+    await sleep(1000);
+
+    if (!isTrackedProcessRunning("ollama")) {
+      const stderrTail = tailServerLog("ollama", "stderr");
+      state.ollama.process = null;
+      return {
+        ok: false,
+        message: `Ollama exited during startup.\n\n${stderrTail || "(no stderr output)"}`,
+      };
+    }
+
+    const result = await pingHealth("ollama", config);
+    if (result.ok) {
+      return {
+        ok: true,
+        message: `Ollama is ready on ${getHealthUrl("ollama", config)}.`,
+        status: await getServerStatus({ selectedRuntime: "ollama", ollama: config }, "ollama"),
+      };
+    }
+  }
+
+  await stopServer("ollama");
+  return {
+    ok: false,
+    message: "Timed out waiting for Ollama health check.",
+  };
 }
 
 function ensureEmptyFile(filePath: string) {

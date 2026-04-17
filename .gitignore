@@ -27,6 +27,7 @@ Thumbs.db
 # Local web app runtime logs
 logs/next-dev*.log
 logs/llama-server-web*.log
+logs/ollama-serve-web*.log
 
 # E2E artifacts
 playwright-report/

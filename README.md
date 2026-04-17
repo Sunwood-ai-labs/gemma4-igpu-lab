@@ -1,11 +1,11 @@
 # gemma4-igpu-lab
 
-Gemma 4 E2B on Intel iGPU setup notes, benchmarks, and a modern local web app for feeling `llama.cpp + Vulkan` speed.
+Gemma 4 E2B on Intel iGPU setup notes, benchmarks, and a modern local web app for comparing `llama.cpp + Vulkan` and `Ollama`.
 
 ## Contents
 
 - `app/`
-  Next.js web app with a local dashboard for starting `llama-server`, sending prompts, and watching live timing metrics.
+  Next.js web app with a local dashboard for switching between `llama.cpp + Vulkan` and `Ollama`, sending prompts, and comparing live timing metrics.
 - `components/`
   `shadcn/ui`-style interface components and the main speed lab screen.
 - `docs/Gemma4-E2B-iGPU-Setup-Benchmark-Report.md`
@@ -21,7 +21,7 @@ Gemma 4 E2B on Intel iGPU setup notes, benchmarks, and a modern local web app fo
 
 - Large third-party artifacts such as model files, full `llama.cpp` source trees, build outputs, and Python virtual environments are intentionally excluded from the repository.
 - The main reference document is the report under `docs/`.
-- The web app is tuned specifically for `llama.cpp + Vulkan`, not for generic multi-runtime comparison.
+- The web app is tuned for local `Gemma 4 E2B` runtime comparison on this PC.
 
 ## Quick Start: Web App
 
@@ -44,17 +44,21 @@ Open:
 http://localhost:3000
 ```
 
-### 3. Click `Start Server`
+### 3. Pick a runtime and click `Start`
 
 The web app is prefilled for this machine's current setup:
 
-- `C:\Prj\Work\src\llama.cpp\build-mingw-vulkan\bin\llama-server.exe`
-- `C:\Prj\Work\models\gemma4-e2b\gemma-4-E2B-it-Q8_0.gguf`
-- `Vulkan0`
-- `--reasoning off`
-- `--reasoning-format none`
+- `llama.cpp + Vulkan`
+  - `C:\Prj\Work\src\llama.cpp\build-mingw-vulkan\bin\llama-server.exe`
+  - `C:\Prj\Work\models\gemma4-e2b\gemma-4-E2B-it-Q8_0.gguf`
+  - `Vulkan0`
+  - `--reasoning off`
+  - `--reasoning-format none`
+- `Ollama`
+  - `C:\Users\makim\AppData\Local\Programs\Ollama\ollama.exe`
+  - `gemma4e2b-q8-local:latest`
 
-It starts `llama-server` itself, waits for `/health`, and then the dashboard is ready to use.
+The app can reuse an already-running backend or start a tracked local process when needed.
 
 ### 4. Use a quick prompt
 
@@ -62,7 +66,7 @@ It starts `llama-server` itself, waits for `/health`, and then the dashboard is 
 - `Explain RAM in exactly three short bullet points.`
 - `Give three short tips for making local LLM inference feel faster on a low-end GPU.`
 
-### 5. Watch the metrics
+### 5. Watch the metrics and compare
 
 The dashboard highlights the speed feel directly in the browser:
 
@@ -70,10 +74,11 @@ The dashboard highlights the speed feel directly in the browser:
 - `Prompt tok/s`
 - `Gen tok/s`
 - `Total`
+- latest result per runtime in the comparison card
 
 ## E2E Test
 
-The repository includes a real browser E2E smoke test with Playwright. It opens the dashboard, starts `llama-server`, sends a short prompt, and verifies that timing metrics are shown.
+The repository includes a real browser E2E smoke test with Playwright. It opens the dashboard, runs a real chat on `llama.cpp + Vulkan`, switches to `Ollama`, runs another real chat, and verifies that timing metrics and comparison cards are shown.
 
 ### 1. Install the Playwright browser
 
@@ -90,6 +95,6 @@ npm run test:e2e
 
 Notes:
 
-- The E2E test is intentionally real, not mocked. It uses the local `llama.cpp + Vulkan` setup from this machine.
-- It can take a few minutes because the test waits for `llama-server` startup and a full streamed response.
+- The E2E test is intentionally real, not mocked. It uses the local `llama.cpp + Vulkan` and `Ollama` setup from this machine.
+- It can take a few minutes because the test waits for runtime startup and full streamed responses.
 - HTML reports are written to `playwright-report/` when the suite finishes.
