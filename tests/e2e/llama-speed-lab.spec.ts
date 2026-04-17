@@ -13,8 +13,8 @@ test.afterAll(async ({ request }) => {
 test("renders the llama.cpp speed dashboard", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: /feel the local igpu speed/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Server Pulse" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /gemma 4 igpu speed lab/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Server" })).toBeVisible();
   await expect(page.getByLabel("llama-server.exe")).toHaveValue(/llama-server\.exe/i);
   await expect(page.getByLabel("Model Path")).toHaveValue(/gemma-4-E2B-it-Q8_0\.gguf/i);
   await expect(page.getByTestId("send-prompt-button")).toBeDisabled();
