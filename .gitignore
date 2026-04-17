@@ -4,6 +4,8 @@ src/
 tools/
 build/
 dist/
+.next/
+node_modules/
 
 # Model and archive files
 *.gguf
@@ -21,3 +23,6 @@ __pycache__/
 # OS and editor
 .DS_Store
 Thumbs.db
+
+# Local web app runtime logs
+logs/next-dev*.log

@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-ibm-plex-mono);
+}
+
+:root {
+  --background: oklch(0.98 0.01 95);
+  --foreground: oklch(0.19 0.02 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.19 0.02 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.19 0.02 255);
+  --primary: oklch(0.24 0.03 252);
+  --primary-foreground: oklch(0.98 0.01 95);
+  --secondary: oklch(0.95 0.02 205);
+  --secondary-foreground: oklch(0.23 0.02 252);
+  --muted: oklch(0.95 0.01 252);
+  --muted-foreground: oklch(0.48 0.02 252);
+  --accent: oklch(0.93 0.04 195);
+  --accent-foreground: oklch(0.23 0.02 252);
+  --destructive: oklch(0.61 0.23 26);
+  --border: oklch(0.88 0.01 252);
+  --input: oklch(0.88 0.01 252);
+  --ring: oklch(0.62 0.14 215);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-background font-sans text-foreground antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(35, 197, 94, 0.08), transparent 22rem),
+      radial-gradient(circle at top right, rgba(6, 182, 212, 0.14), transparent 24rem),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(248, 250, 252, 0.98)),
+      linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+    background-size: auto, auto, auto, 24px 24px, 24px 24px;
+  }
+
+  ::selection {
+    background: rgba(6, 182, 212, 0.18);
+  }
+}
