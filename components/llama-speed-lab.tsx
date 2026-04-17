@@ -154,6 +154,7 @@ export function LlamaSpeedLab({ initialConfig }: { initialConfig: ServerConfig }
 
     const requestStarted = performance.now();
     let firstTokenRecorded = false;
+    let firstTokenElapsed = "--";
 
     try {
       const response = await fetch("/api/chat", {
@@ -198,9 +199,10 @@ export function LlamaSpeedLab({ initialConfig }: { initialConfig: ServerConfig }
             if (chunk) {
               if (!firstTokenRecorded) {
                 firstTokenRecorded = true;
+                firstTokenElapsed = `${((performance.now() - requestStarted) / 1000).toFixed(2)}s`;
                 setMetrics((current) => ({
                   ...current,
-                  firstToken: `${((performance.now() - requestStarted) / 1000).toFixed(2)}s`,
+                  firstToken: firstTokenElapsed,
                 }));
               }
 
@@ -216,9 +218,7 @@ export function LlamaSpeedLab({ initialConfig }: { initialConfig: ServerConfig }
 
             if (packet.usage && packet.timings) {
               setMetrics({
-                firstToken: firstTokenRecorded
-                  ? `${((performance.now() - requestStarted) / 1000).toFixed(2)}s`
-                  : "--",
+                firstToken: firstTokenRecorded ? firstTokenElapsed : "--",
                 promptTps:
                   packet.timings.prompt_per_second !== undefined
                     ? packet.timings.prompt_per_second.toFixed(2)
